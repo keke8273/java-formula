@@ -16,11 +16,10 @@ server_jre_tar:
     - name: tar xvf {{ home }}/server_jre.tgz -C {{ home }}
     - require:
       - file: server_jre_tar
-  install_alternative:
-    alternatives.install:
-      - name: java
-      - link: /usr/bin/java
-      - path: {{ home }}/jdk1.8.0_201/bin/java
-      - priority: 30
-      - require:
-        - cmd: server_jre_tar
+  alternatives.install:
+    - name: java
+    - link: /usr/bin/java
+    - path: {{ home }}/jdk1.8.0_201/bin/java
+    - priority: 30
+    - require:
+      - cmd: server_jre_tar
